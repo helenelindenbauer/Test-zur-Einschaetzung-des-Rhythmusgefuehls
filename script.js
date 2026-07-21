@@ -12,7 +12,7 @@
 // sind NUR für uns beim Testen gedacht - echte Versuchspersonen sollen das
 // nicht sehen. Vor dem echten Launch einfach auf "false" stellen, dann
 // werden alle .debug-output-Elemente automatisch ausgeblendet (siehe CSS).
-const DEBUG_MODE = true;
+const DEBUG_MODE = false;
 
 document.documentElement.classList.toggle("debug-mode", DEBUG_MODE);
 
