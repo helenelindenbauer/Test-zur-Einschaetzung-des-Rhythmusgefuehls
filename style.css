@@ -1,0 +1,397 @@
+/* ============================================================
+   DESIGN-TOKENS
+   Konzept: Manuskript-Papier / Notensystem / Metronom
+   ============================================================ */
+
+:root {
+  --color-bg: #ffffff;
+  --color-surface: #ffffff;
+  --color-ink: #222222;
+  --color-ink-soft: #666666;
+  --color-accent: #9c6b30;
+  --color-accent-deep: #7a5323;
+  --color-success: #3c7a4e;
+  --color-success-soft: #e3ede4;
+  --color-error: #b23b2e;
+  --color-rule: #d8d8d5;
+
+  --color-progress-upcoming: #f0efec;
+  --color-progress-upcoming-text: #b3b0a8;
+  --color-progress-done: #c7c4bc;
+  --color-progress-done-text: #333333;
+
+  --font-display: "Inter", -apple-system, sans-serif;
+  --font-body: "Inter", -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", "Courier New", monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-bg);
+  color: var(--color-ink);
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+  line-height: 1.65;
+  font-size: 16px;
+}
+
+#app {
+  position: relative;
+}
+
+/* ============================================================
+   SCREENS
+   ============================================================ */
+
+.screen {
+  display: none;
+}
+
+.screen.active {
+  display: block;
+  animation: none; /* bewusst keine Bewegung auf Testseiten, siehe Erklärung im Chat */
+}
+
+/* 5-Linien-Notensystem als wiederkehrendes Signatur-Element,
+   über jeder Bildschirm-Überschrift */
+.group-label {
+  color: var(--color-ink-soft);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0 0 18px;
+}
+
+h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 1.3;
+  margin: 0 0 20px;
+  color: var(--color-ink);
+}
+
+.screen p {
+  margin: 0 0 16px;
+}
+
+.screen em {
+  color: var(--color-ink-soft);
+}
+
+.screen strong {
+  color: var(--color-ink);
+  font-weight: 600;
+}
+
+/* ============================================================
+   FORTSCHRITTSANZEIGE: Metronom-Striche statt Kreise
+   ============================================================ */
+
+.task-progress {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.task-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--color-progress-upcoming);
+  color: var(--color-progress-upcoming-text);
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.task-number.done {
+  background: var(--color-progress-done);
+  color: var(--color-progress-done-text);
+}
+
+.task-number.current {
+  background: var(--color-accent);
+  color: white;
+  font-weight: 600;
+}
+
+/* ============================================================
+   FORMULARELEMENTE
+   ============================================================ */
+
+.field-label {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"] {
+  display: block;
+  width: 100%;
+  padding: 11px 12px;
+  font-family: var(--font-mono);
+  font-size: 15px;
+  color: var(--color-ink);
+  background: var(--color-surface);
+  border: 1px solid var(--color-rule);
+  border-radius: 4px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 1px;
+  border-color: var(--color-accent);
+}
+
+.field-hint {
+  font-size: 13px;
+  color: var(--color-ink-soft);
+  margin-top: 4px;
+}
+
+.example-block {
+  font-style: italic;
+  color: var(--color-ink-soft);
+}
+
+.required-note {
+  color: var(--color-error);
+  font-size: 13px;
+  font-weight: 500;
+  font-family: var(--font-body);
+}
+
+.checkbox-option,
+.radio-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 14px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.checkbox-option input,
+.radio-option input {
+  margin-top: 4px;
+  accent-color: var(--color-accent);
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   AUDIO-PLAYER
+   ============================================================ */
+
+.audio-container {
+  margin: 18px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.audio-play-btn {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 22px;
+  background: var(--color-accent);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.audio-play-btn:hover:not(:disabled) {
+  background: var(--color-accent-deep);
+}
+
+.audio-play-btn:disabled {
+  background: var(--color-rule);
+  color: var(--color-ink-soft);
+  cursor: not-allowed;
+}
+
+.audio-status {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--color-ink-soft);
+}
+
+.debug-output {
+  display: none;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #948f80;
+  white-space: pre-wrap;
+  border-top: 1px dashed var(--color-rule);
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
+html.debug-mode .debug-output {
+  display: block;
+}
+
+.future-note {
+  color: var(--color-ink-soft);
+  font-size: 13px;
+  font-style: italic;
+}
+
+.audio-placeholder {
+  border: 1px dashed var(--color-rule);
+  padding: 12px;
+  color: var(--color-ink-soft);
+  font-style: italic;
+  background: var(--color-surface);
+  border-radius: 4px;
+}
+
+.keyboard-image {
+  width: 100%;
+  max-width: 480px;
+  display: block;
+  margin: 16px 0;
+  border-radius: 6px;
+  border: 1px solid var(--color-rule);
+}
+
+/* ============================================================
+   TEST 4: ROTES TAP-FELD
+   ============================================================ */
+
+.tap-start-field {
+  margin: 20px 0;
+  padding: 32px;
+  background: var(--color-error);
+  color: white;
+  text-align: center;
+  font-weight: 600;
+  font-family: var(--font-body);
+  border-radius: 6px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s ease;
+}
+
+.tap-start-field.active {
+  background: var(--color-success);
+}
+
+.tap-start-field.done {
+  background: var(--color-rule);
+  color: var(--color-ink-soft);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.tap-start-field.locked {
+  background: var(--color-rule);
+  color: var(--color-ink-soft);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.record-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: white;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* ============================================================
+   KONTAKT
+   ============================================================ */
+
+.contact-block {
+  margin-top: 20px;
+  line-height: 1.6;
+  font-size: 14px;
+  color: var(--color-ink-soft);
+}
+
+.contact-block a {
+  color: var(--color-accent-deep);
+}
+
+/* ============================================================
+   WEITER-BUTTON
+   ============================================================ */
+
+#nextBtn {
+  margin-top: 32px;
+  padding: 13px 30px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 15px;
+  background: var(--color-ink);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+#nextBtn:hover:not(:disabled) {
+  background: var(--color-accent-deep);
+}
+
+#nextBtn:disabled {
+  background: var(--color-rule);
+  color: var(--color-ink-soft);
+  cursor: not-allowed;
+}
+
+/* Sichtbarer Fokus-Ring für Tastatur-Bedienbarkeit (Barrierefreiheit) */
+#nextBtn:focus-visible,
+.audio-play-btn:focus-visible,
+.tap-start-field:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ============================================================
+   EINLEITUNG & OUTRO: etwas großzügigere, einladende Note
+   (einzige Stellen mit dezenter Bewegung - siehe Chat-Erklärung)
+   ============================================================ */
+
+/* Bewusst keine Animationen/Effekte irgendwo auf der Seite - schlichtes,
+   sachliches Erscheinungsbild für ein wissenschaftliches Testinstrument */
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 480px) {
+  body {
+    padding: 32px 16px 60px;
+    font-size: 15px;
+  }
+  h1 {
+    font-size: 24px;
+  }
+  .tap-start-field {
+    padding: 24px;
+  }
+}
