@@ -230,9 +230,14 @@ input[type="number"]:focus {
 }
 
 .audio-status {
+  display: none;
   font-family: var(--font-mono);
   font-size: 13px;
   color: var(--color-ink-soft);
+}
+
+html.debug-mode .audio-status {
+  display: inline;
 }
 
 .debug-output {
