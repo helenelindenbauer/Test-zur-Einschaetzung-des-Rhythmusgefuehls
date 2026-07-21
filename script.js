@@ -12,7 +12,7 @@
 // sind NUR für uns beim Testen gedacht - echte Versuchspersonen sollen das
 // nicht sehen. Vor dem echten Launch einfach auf "false" stellen, dann
 // werden alle .debug-output-Elemente automatisch ausgeblendet (siehe CSS).
-const DEBUG_MODE = false;
+const DEBUG_MODE = true;
 
 document.documentElement.classList.toggle("debug-mode", DEBUG_MODE);
 
@@ -98,8 +98,8 @@ function test4ItemBody(stimulusId) {
     <p>Wenn Sie sich bereit fühlen, den Rhythmus nachzutappen, so klicken Sie mit Ihrer linken Maustaste auf das rote Feld (Ein erneutes Abspielen des Rhythmus ist nun nicht mehr möglich). Anschließend können Sie den Rhythmus nachtappen.</p>
     <p>Wenn Sie den Rhythmus nachgetappt haben, so klicken Sie erneut mit der linken Maustaste auf das nun grüne Feld, um das Nachtappen zu beenden. Wann Sie mit dem Tappen beginnen, spielt dabei keine Rolle. Ob der Rhythmus korrekt nachgetappt wurde, wird anhand Ihres ersten Tappings berechnet.</p>
     <div id="tap-start-${stimulusId}" class="tap-start-field">Klicken, um mit dem Nachtappen zu beginnen</div>
+    <p class="future-note">("Weiter" wird erst aktiv, sobald das Nachtappen über das grüne Feld beendet wurde)</p>
     <div id="debug-${stimulusId}" class="debug-output"></div>
-    <p class="future-note">(Später: "Weiter" erst möglich, nachdem der Rhythmus nachgetappt wurde – TODO)</p>
   `;
 }
 
@@ -353,7 +353,7 @@ const steps = [
       <p>Im Folgenden werden Ihnen 4 kurze Rhythmen vorgespielt, die Sie nachtappen sollen. Mit "tappen" ist das Drücken und Loslassen der Leertaste gemeint. Dies soll immer wieder wiederholt werden, so wie man es beim Nachklatschen eines Rhythmus tun würde.</p>
       <p>Vor dem Beginn des Rhythmus ist folgender Sinuston zu hören:</p>
       <div id="audio-container-demo-sinuston-test4" class="audio-container"></div>
-      <p>Sie dürfen sich den Rhythmus so oft anhören, wie Sie wollen. Jedes erneute Anhören wird zum Testergebnis gezählt. Sie müssen den Rhythmus zumindest ein Mal abgespielt haben, um mit dem Nachtappen beginnen zu können.</p>
+      <p>Sie dürfen sich den Rhythmus so oft anhören, wie Sie wollen. Jedes erneute Anhören wird zum Testergebnis gezählt. Sie müssen den Rhythmus zumindest ein mal abgespielt haben, um mit dem Nachtappen beginnen zu können.</p>
       <p>Wenn Sie sich bereit fühlen, den Rhythmus nachzutappen, so klicken Sie mit Ihrer linken Maustaste auf das rote Feld (Ein erneutes Abspielen des Rhythmus ist nun nicht mehr möglich). Anschließend können Sie den Rhythmus nachtappen.</p>
       <p>Wenn Sie den Rhythmus nachgetappt haben, so klicken Sie erneut mit der linken Maustaste auf das nun grüne Feld, um das Nachtappen zu beenden. Wann Sie mit dem Tappen beginnen, spielt dabei keine Rolle. Ob der Rhythmus korrekt nachgetappt wurde, wird anhand Ihres ersten Tappings berechnet.</p>
     `
@@ -508,6 +508,16 @@ let test4TapSession = null;
 // Stück inkl. der 30s Continuation-Phase komplett durchgelaufen ist.
 // step.completed wird in setupTest1Audio() nach Ablauf von Phase 3 gesetzt.
 ["test1-item-1", "test1-item-2", "test1-item-3"].forEach(id => {
+  const step = steps.find(s => s.id === id);
+  step.completed = false;
+  step.validate = () => step.completed;
+});
+
+// Pflicht-Gate für Test 4: "Weiter" bleibt gesperrt, bis der Rhythmus
+// nachgetappt UND das Nachtappen über das grüne Feld beendet wurde.
+// step.completed wird in setupTest4() gesetzt, sobald das Feld auf
+// "done" wechselt (siehe dort).
+["test4-item-1", "test4-item-2", "test4-item-3", "test4-item-4"].forEach(id => {
   const step = steps.find(s => s.id === id);
   step.completed = false;
   step.validate = () => step.completed;
@@ -974,6 +984,15 @@ async function setupTest4() {
           tapField.classList.remove("active");
           tapField.classList.add("done");
           tapPhase = "done";
+
+          // Pflicht-Gate freischalten: Nachtappen wurde abgeschlossen
+          const stepObj = steps.find(s => s.id === stim.id);
+          if (stepObj) {
+            stepObj.completed = true;
+            if (steps[currentStep] === stepObj) {
+              updateNextButtonState();
+            }
+          }
         }
         // im Zustand "done" passiert bei weiteren Klicks nichts mehr
       });
