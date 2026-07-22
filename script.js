@@ -12,7 +12,7 @@
 // sind NUR für uns beim Testen gedacht - echte Versuchspersonen sollen das
 // nicht sehen. Vor dem echten Launch einfach auf "false" stellen, dann
 // werden alle .debug-output-Elemente automatisch ausgeblendet (siehe CSS).
-const DEBUG_MODE = true;
+const DEBUG_MODE = false;
 
 document.documentElement.classList.toggle("debug-mode", DEBUG_MODE);
 
@@ -116,11 +116,11 @@ const steps = [
     title: "Einleitung",
     html: `
       <p>Liebe Teilnehmende!</p>
-      <p>Im Rahmen meiner Bachelorarbeit im Fach Musikwissenschaft an der Universität Wien habe ich einen Test entwickelt, der das Rhythmusgefühl von Personen einschätzen soll. Ihre Teilnahme an dem Test ermöglicht nun eine Überprüfung der einzelnen Aufgaben, damit die Validität des Tests evaluiert werden kann. Dabei soll ermittelt werden, ob der Test tatsächlich das misst, was er messen soll.</p>
+      <p>Im Rahmen meiner Bachelorarbeit im Fach Musikwissenschaft an der Universität Wien habe ich einen Test entwickelt, der das Rhythmusgefühl von Personen einschätzen soll. Ihre Teilnahme an diesem Test ermöglicht eine Überprüfung der einzelnen Aufgaben, damit die Validität des Tests evaluiert werden kann. Dabei soll ermittelt werden, ob der Test tatsächlich das misst, was er messen soll.</p>
       <p>Im Rahmen dieses Tests werden Sie Hörbeispiele hören, bei denen Sie einerseits Unterschiede in Rhythmen erkennen sollen und andererseits selbst zu Rhythmen tappen oder diese reproduzieren sollen. Die Dauer des Tests beträgt in etwa 30 Minuten.</p>
       <p>Ihre Daten werden anonym gespeichert und Ihre Antworten können Ihrer Person zu keinem Zeitpunkt zugeordnet werden.</p>
-      <p>Der Test muss neben der Validität auch auf seine Reliabilität überprüft werden. Dabei wird ermittelt, wie zuverlässig er das Rhythmusgefühl einer Person messen kann. Mein Vorgehen dabei ist eine Test-Retest-Reliabilitätsprüfung, bei der der Test von denselben Versuchspersonen noch einmal durchgeführt wird. Die Unterschiede oder Gemeinsamkeiten der Daten vom ersten und vom zweiten Durchführungsdatum werden verglichen, wobei kleine Unterschiede auf eine hohe Reliabilität schließen lassen und damit auf eine hohe Zuverlässigkeit des Tests. Um Lerneffekte und ein Erinnern an die Hörbeispiele und gegebene Antworten möglichst auszuschließen, soll dazwischen ein Abstand von mehreren Monaten liegen.</p>
-      <p>Es wäre toll, wenn Sie sich bereit erklären, mich beim Ermitteln der Test-Retest-Reliabilität zu unterstützen. Ich werde dazu im November eine E-Mail aussenden, um Sie um ein erneutes Ausfüllen des Tests zu bitten. Geben Sie dafür bitte eine E-Mail-Adresse an. Die E-Mail-Adresse wird nur für den Zweck einer erneuten Kontaktaufnahme im November genutzt und separat gespeichert, sodass sie nicht mit Ihren Ergebnissen des Tests in Verbindung steht. Ihre Daten bleiben anonym.</p>
+      <p>Der Test soll neben der Validität auch auf seine Reliabilität überprüft werden. Dabei soll ermittelt werden, wie zuverlässig er das Rhythmusgefühl einer Person messen kann. Das Vorgehen dabei ist eine Test-Retest-Reliabilitätsprüfung, bei der der Test von denselben Versuchspersonen zweimal durchgeführt wird. Die Unterschiede oder Gemeinsamkeiten der Daten vom ersten und vom zweiten Durchführungsdatum werden verglichen, wobei kleine Unterschiede auf eine hohe Reliabilität und damit auf eine hohe Zuverlässigkeit des Tests schließen lassen. Um Lerneffekte und ein Erinnern an die Hörbeispiele und gegebene Antworten möglichst auszuschließen, soll dazwischen ein Abstand von mehreren Monaten liegen.</p>
+      <p>Ich würde mich freuen, wenn Sie sich bereit erklären, mich beim Ermitteln der Test-Retest-Reliabilität zu unterstützen. Ich werde dazu im November eine E-Mail aussenden, in der ich Sie um eine erneute Durchführung des Tests bitten werde. Geben Sie dafür bitte eine E-Mail-Adresse an. Die E-Mail-Adresse wird nur für den Zweck einer erneuten Kontaktaufnahme im November genutzt und separat gespeichert, sodass sie nicht mit Ihren Ergebnissen des Tests in Verbindung steht. Ihre Daten bleiben anonym.</p>
 
       <label class="field-label" for="email-input">E-Mail-Adresse (optional)</label>
       <input type="email" id="email-input" placeholder="ihre.adresse@beispiel.at">
@@ -234,8 +234,8 @@ const steps = [
     group: "Test 1",
     title: "Test 1: Tempo Tapper – Einleitung",
     html: `
-      <p>Für den ersten Test werden Ihnen nun nacheinander 3 kurze Klavierstücke vorgespielt. Nachdem Sie auf "Abspielen" gedrückt haben, tappen Sie bitte im Rhythmus und Tempo des Stücks mit Ihrer Leertaste mit. Mit "tappen" ist das Drücken und Loslassen der Leertaste gemeint. Dies soll immer wieder wiederholt werden, so wie man es beim Mitklatschen zu einem Stück tun würde.</p>
-      <p>Damit Sie eine Vorstellung bekommen, wie das ausgeführt werden soll, hören Sie sich bitte folgendes Hörbeispiel an:</p>
+      <p>Für den ersten Test werden Ihnen nacheinander 3 kurze Klavierstücke vorgespielt. Nachdem Sie auf "Abspielen" gedrückt haben, tappen Sie im Rhythmus und Tempo des Stücks mit Ihrer Leertaste mit. Mit "tappen" ist das Drücken und Loslassen der Leertaste gemeint. Dies soll immer wieder wiederholt werden, so wie man es beim Mitklatschen zu einem Stück tun würde.</p>
+      <p>Damit Sie eine Vorstellung bekommen, wie das Tappen zum Takt auszuführen ist, hören Sie sich bitte folgendes Hörbeispiel an:</p>
       <div id="audio-container-demo-happybirthday" class="audio-container"></div>
       <p>Wie Sie gehört haben, sollen im 4/4-Takt die Viertelnoten mitgetappt werden, genau wie es das Metronom in diesem Hörbeispiel getan hat.</p>
       <p>Wenn das Stück stoppt, tappen Sie bitte noch weiter, bis Sie diesen Sinuston hören:</p>
@@ -255,7 +255,7 @@ const steps = [
     group: "Test 2",
     title: "Test 2: Metronom im Takt – Einleitung",
     html: `
-      <p>Sie werden nun 5 Musikstücke hören, welche ein Tapping unterlegt haben. Die Musikstücke sind alle 20 Sekunden lang. Hören Sie genau zu und ermitteln Sie, ob das Tapping im Takt ist und zu dem Rhythmus des Klaviers passt oder nicht.</p>
+      <p>Sie werden nun 5 Musikstücke hören, welche ein Tapping unterlegt haben. Alle Musikstücke sind 20 sekunden lang. Hören Sie genau zu und ermitteln Sie, ob das Tapping im Takt ist und zu dem Rhythmus des Klaviers passt oder nicht.</p>
       <p><strong>Stimmt</strong> das Tapping mit dem Rhythmus des Klaviers <strong>überein</strong>, so wählen Sie die Antwortmöglichkeit <strong>JA</strong>.</p>
       <p><strong>Stimmt</strong> das Tapping mit dem Rhythmus des Klaviers <strong>NICHT überein</strong>, so wählen Sie die Antwortmöglichkeit <strong>NEIN</strong>.</p>
       <p><strong>ACHTUNG</strong>: Wenn das <strong>Musikstück begonnen</strong> wurde, ist kein erneutes Abspielen und auch keine Pause möglich. <strong>Ihre Antwort soll nach 1x anhören erfolgen!</strong></p>
