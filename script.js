@@ -354,7 +354,7 @@ const steps = [
       <p>Vor dem Beginn des Rhythmus ist folgender Sinuston zu hören:</p>
       <div id="audio-container-demo-sinuston-test4" class="audio-container"></div>
       <p>Sie dürfen sich den Rhythmus so oft anhören, wie Sie wollen. Jedes erneute Anhören wird zum Testergebnis gezählt. Sie müssen den Rhythmus zumindest ein Mal abgespielt haben, um mit dem Nachtappen beginnen zu können.</p>
-      <p>Wenn Sie sich bereit fühlen, den Rhythmus nachzutappen, so klicken Sie mit Ihrer linken Maustaste auf das rote Feld (Ein erneutes Abspielen des Rhythmus ist nun nicht mehr möglich). Anschließend können Sie den Rhythmus nachtappen.</p>
+      <p>Wenn Sie sich bereit fühlen, den Rhythmus nachzutappen, so klicken Sie mit Ihrer linken Maustaste auf das rote Feld (ein erneutes Abspielen des Rhythmus ist nun nicht mehr möglich). Anschließend können Sie den Rhythmus nachtappen.</p>
       <p>Wenn Sie den Rhythmus nachgetappt haben, so klicken Sie erneut mit der linken Maustaste auf das nun grüne Feld, um das Nachtappen zu beenden. Wann Sie mit dem Tappen beginnen, spielt dabei keine Rolle. Ob der Rhythmus korrekt nachgetappt wurde, wird anhand Ihres ersten Tappings berechnet.</p>
     `
   },
