@@ -237,7 +237,7 @@ const steps = [
       <p>Für den ersten Test werden Ihnen nacheinander 3 kurze Klavierstücke vorgespielt. Nachdem Sie auf "Abspielen" gedrückt haben, tappen Sie im Rhythmus und Tempo des Stücks mit Ihrer Leertaste mit. Mit "tappen" ist das Drücken und Loslassen der Leertaste gemeint. Dies soll immer wieder wiederholt werden, so wie man es beim Mitklatschen zu einem Stück tun würde.</p>
       <p>Damit Sie eine Vorstellung bekommen, wie das Tappen zum Takt auszuführen ist, hören Sie sich bitte folgendes Hörbeispiel an:</p>
       <div id="audio-container-demo-happybirthday" class="audio-container"></div>
-      <p>Wie Sie gehört haben, sollen im 4/4-Takt die Viertelnoten mitgetappt werden, genau wie es das Metronom in diesem Hörbeispiel getan hat.</p>
+      <p>Wie Sie gehört haben, sollen im 4/4-Takt die Viertelnoten mitgetappt werden, genau wie es in diesem Hörbeispiel das Metronom zu dem Klavierstück getan hat.</p>
       <p>Wenn das Stück stoppt, tappen Sie bitte noch weiter, bis Sie diesen Sinuston hören:</p>
       <div id="audio-container-demo-sinuston" class="audio-container"></div>
       <p>Dabei soll ermittelt werden, ob Sie den Takt des Stückes weiterhin halten können.</p>
